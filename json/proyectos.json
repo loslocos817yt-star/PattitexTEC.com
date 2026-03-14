@@ -1,0 +1,12 @@
+[
+  {
+    "name": "PyServer",
+    "descarga": "https://pypi.org/project/pyserver-tool/",
+    "descripción": "Libreria en Python que se puede instalar con el siguiente comando (en el terminal) pip install pyserver-tool"
+  },
+  {
+    "name": "VerdurOS",
+    "descarga": "no",
+    "descripción": "Este proyecto no tiene link porque todavía está en desarrollo."
+  }
+]
