@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PattitexTEC | Official Hub</title>
+    <link rel="stylesheet" href="css/Base.css">
+    
+    <style>
+        /* Estilos estructurales básicos (el resto va en Base.css) */
+        body {
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding-bottom: 50px;
+            margin-top: 20px;
+        }
+
+        .logo {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .search-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="menu-toggle" class="menu-button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div id="menu-close" class="close-button">←</div>
+        </div>
+        
+        <div class="sidebar-content">
+            <h2 class="sidebar-title">PATTITEXTEC</h2>
+            <p class="sidebar-desc">Desarrollo y herramientas creadas por PattitexTEC.</p>
+            
+            <div class="menu-section">
+                <p class="menu-label">REDES OFICIALES</p>
+                <a href="https://youtube.com/@insanodecartonmc?si=p3c-YuL0wKzoLHHw" target="_blank" class="social-link">YOUTUBE</a>
+                <a href="https://www.tiktok.com/@pattitextec_ofi?_r=1&_t=ZS-94fKqImPS2m" target="_blank" class="social-link">TIKTOK PATTITEXTEC</a>
+                <a href="https://www.tiktok.com/@nsbewvss?_r=1&_t=ZS-94fKrI1E2A0" target="_blank" class="social-link">TIKTOK DUEÑO</a>
+            </div>
+
+            <div class="menu-section">
+                <p class="menu-label" style="color: #ff4444;">OBJETIVOS</p>
+                <a href="https://www.tiktok.com/@nvidiageforce?_r=1&_t=ZS-94fKuJMUqPc" target="_blank" class="social-link hate">HATE A NVIDIA</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <div class="logo">
+        Pattitex<span class="t">T</span><span class="e">E</span><span class="c">C</span>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="buscador" placeholder="[ BUSCAR_PROYECTO ]_">
+    </div>
+
+    <div id="proyectos-container" class="container">
+        <p style="color: #00FF00;">CONECTANDO AL SERVIDOR...</p>
+    </div>
+
+    <script>
+        let baseDeDatos = [];
+
+        // Función para cargar los proyectos desde el JSON
+        async function cargarSistema() {
+            try {
+                const res = await fetch('json/proyectos.json');
+                baseDeDatos = await res.json();
+                render(baseDeDatos);
+            } catch (err) {
+                document.getElementById('proyectos-container').innerHTML = 
+                    "<p style='color:red'>[ ERROR ]: JSON_DATABASE_NOT_FOUND</p>";
+            }
+        }
+
+        // Función para dibujar las tarjetas en el HTML
+        function render(lista) {
+            const container = document.getElementById('proyectos-container');
+            container.innerHTML = '';
+
+            if (lista.length === 0) {
+                container.innerHTML = '<p style="color: #004400">NO HAY COINCIDENCIAS.</p>';
+                return;
+            }
+
+            lista.forEach(proy => {
+                let btn = (proy.descarga && proy.descarga.toLowerCase() !== "no") 
+                    ? `<a href="${proy.descarga}" class="btn-descarga" target="_blank">> OBTENER</a>` 
+                    : '';
+
+                container.innerHTML += `
+                    <div class="card">
+                        <h2>${proy.name}</h2>
+                        <p>${proy.descripción}</p>
+                        ${btn}
+                    </div>
+                `;
+            });
+        }
+
+        // Lógica del buscador
+        document.getElementById('buscador').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtrados = baseDeDatos.filter(p => 
+                p.name.toLowerCase().includes(term) || 
+                p.descripción.toLowerCase().includes(term)
+            );
+            render(filtrados);
+        });
+
+        // LÓGICA DEL MENÚ LATERAL
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        const cerrarMenu = () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        };
+
+        menuClose.addEventListener('click', cerrarMenu);
+        overlay.addEventListener('click', cerrarMenu);
+
+        window.onload = cargarSistema;
+    </script>
+</body>
+</html>
