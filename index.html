@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/Base.css">
     
     <style>
-        /* Estilos estructurales básicos (el resto va en Base.css) */
         body {
             background-color: #000;
             margin: 0;
@@ -46,6 +45,22 @@
         <span></span>
     </div>
 
+    <div class="user-btn" onclick="toggleUserModal()">
+        <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
+        </svg>
+    </div>
+
+    <div id="user-modal" class="user-modal hidden">
+        <div class="modal-header">
+            <span id="modal-title">SISTEMA_CUENTA</span>
+            <span class="close-modal" onclick="toggleUserModal()">[ X ]</span>
+        </div>
+        <div id="modal-content" class="modal-body">
+            </div>
+    </div>
+
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
             <div id="menu-close" class="close-button">←</div>
@@ -54,14 +69,6 @@
         <div class="sidebar-content">
             <h2 class="sidebar-title">PATTITEXTEC</h2>
             <p class="sidebar-desc">Desarrollo y herramientas creadas por PattitexTEC.</p>
-            
-            <div class="menu-section">
-                <p class="menu-label">DATABASE_LOGIN</p>
-                <input type="text" id="reg-user" class="input-terminal" placeholder="USER_">
-                <input type="password" id="reg-pass" class="input-terminal" placeholder="PASS_">
-                <input type="text" id="reg-id" class="input-terminal" placeholder="ID_NUM_">
-                <a href="#" class="social-link" onclick="ejecutarRegistro()">> EJECUTAR_UPLOAD</a>
-            </div>
             
             <div class="menu-section">
                 <p class="menu-label">REDES OFICIALES</p>
@@ -94,7 +101,6 @@
     <script>
         let baseDeDatos = [];
 
-        // Función para cargar los proyectos desde el JSON
         async function cargarSistema() {
             try {
                 const res = await fetch('json/proyectos.json');
@@ -106,7 +112,6 @@
             }
         }
 
-        // Función para dibujar las tarjetas en el HTML
         function render(lista) {
             const container = document.getElementById('proyectos-container');
             container.innerHTML = '';
@@ -131,7 +136,6 @@
             });
         }
 
-        // Lógica del buscador
         document.getElementById('buscador').addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const filtrados = baseDeDatos.filter(p => 
@@ -141,7 +145,7 @@
             render(filtrados);
         });
 
-        // LÓGICA DEL MENÚ LATERAL
+        // Lógica Menú
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const sidebar = document.getElementById('sidebar');
@@ -161,22 +165,9 @@
         overlay.addEventListener('click', cerrarMenu);
 
         window.onload = cargarSistema;
-
-        // NUEVO: Función puente para enviar datos al JS principal
-        function ejecutarRegistro() {
-            const u = document.getElementById('reg-user').value;
-            const p = document.getElementById('reg-pass').value;
-            const i = document.getElementById('reg-id').value;
-            
-            if(u && p && i) {
-                cerrarMenu(); 
-                registrarUsuario(u, p, i); 
-            } else {
-                alert("CAMPOS_INCOMPLETOS");
-            }
-        }
     </script>
     
     <script src="js/main.js"></script>
 </body>
 </html>
+
