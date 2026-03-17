@@ -26,7 +26,7 @@ body::after {
     opacity: 0.5;
 }
 
-/* 2. DISEÑO DEL LOGO PATTITEXTEC */
+/* 2. DISEÑO DEL LOGO */
 .logo {
     font-size: 3.5rem;
     letter-spacing: 4px;
@@ -59,7 +59,7 @@ body::after {
 .sidebar {
     position: fixed;
     top: 0;
-    left: -320px; /* Escondido */
+    left: -320px;
     width: 320px;
     height: 100%;
     background-color: #000;
@@ -70,144 +70,136 @@ body::after {
     box-sizing: border-box;
 }
 
-.sidebar.active {
-    left: 0;
-}
+.sidebar.active { left: 0; }
 
 .close-button {
-    color: #00FF00;
-    font-size: 2.5rem;
-    cursor: pointer;
-    margin-bottom: 20px;
+    color: #00FF00; font-size: 2.5rem; cursor: pointer; margin-bottom: 20px;
 }
 
-.sidebar-title {
-    color: #fff;
-    -webkit-text-stroke: 0.5px #00FF00;
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-}
-
-.sidebar-desc {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 30px;
-}
-
-.menu-section {
-    margin-bottom: 25px;
-}
-
-.menu-label {
-    font-size: 0.75rem;
-    color: #444;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-}
+.sidebar-title { color: #fff; -webkit-text-stroke: 0.5px #00FF00; font-size: 1.8rem; margin-bottom: 5px; }
+.sidebar-desc { font-size: 0.9rem; color: #666; margin-bottom: 30px; }
+.menu-section { margin-bottom: 25px; }
+.menu-label { font-size: 0.75rem; color: #444; margin-bottom: 10px; letter-spacing: 2px; }
 
 .social-link {
-    display: block;
-    color: #00FF00 !important;
-    text-decoration: none;
-    padding: 15px 0;
-    border-bottom: 1px solid #111;
-    font-size: 1.1rem;
+    display: block; color: #00FF00 !important;
+    text-decoration: none; padding: 15px 0;
+    border-bottom: 1px solid #111; font-size: 1.1rem;
     transition: 0.3s;
 }
 
-.social-link:hover {
-    padding-left: 10px;
-    background: rgba(0, 255, 0, 0.05);
-}
-
-.social-link.hate:hover {
-    color: #ff4444 !important;
-    border-bottom: 1px solid #ff4444;
-}
+.social-link:hover { padding-left: 10px; background: rgba(0, 255, 0, 0.05); }
+.social-link.hate:hover { color: #ff4444 !important; border-bottom: 1px solid #ff4444; }
 
 .overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85);
-    display: none;
-    z-index: 1400;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85); display: none; z-index: 1400;
 }
-
 .overlay.active { display: block; }
 
 /* 4. BUSCADOR Y TARJETAS */
 #buscador {
-    width: 100%;
-    font-size: 1.3rem;
-    padding: 18px;
-    background: #000;
-    border: 1px solid #00FF00;
-    color: #00FF00;
-    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
-    outline: none;
+    width: 100%; font-size: 1.3rem; padding: 18px; background: #000;
+    border: 1px solid #00FF00; color: #00FF00;
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2); outline: none; box-sizing: border-box;
 }
 
 .card {
-    background: #000;
-    border: 1px solid #004400;
-    border-left: 6px solid #00FF00;
-    padding: 25px;
-    margin-bottom: 25px;
-    transition: 0.3s;
+    background: #000; border: 1px solid #004400; border-left: 6px solid #00FF00;
+    padding: 25px; margin-bottom: 25px; transition: 0.3s;
 }
-
-.card:hover {
-    border-color: #00FF00;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
-}
-
-.card h2 {
-    font-size: 2rem;
-    margin: 0 0 10px 0;
-    -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.6);
-}
-
-.card p {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: #00FF00;
-}
+.card:hover { border-color: #00FF00; box-shadow: 0 0 15px rgba(0, 255, 0, 0.1); }
+.card h2 { font-size: 2rem; margin: 0 0 10px 0; -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.6); }
+.card p { font-size: 1.2rem; line-height: 1.5; color: #00FF00; }
 
 .btn-descarga {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 20px;
-    border: 1px solid #00FF00;
-    color: #00FF00 !important;
-    text-decoration: none;
-    transition: 0.2s;
+    display: inline-block; margin-top: 20px; padding: 12px 20px;
+    border: 1px solid #00FF00; color: #00FF00 !important; text-decoration: none; transition: 0.2s;
+    cursor: pointer; background: #000; font-family: 'DECTerminal', monospace;
 }
+.btn-descarga:hover { background: #00FF00 !important; color: #000 !important; }
 
-.btn-descarga:hover {
-    background: #00FF00 !important;
-    color: #000 !important;
-}
-
-/* 5. SCROLLBAR DARK */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #000; }
 ::-webkit-scrollbar-thumb { background: #004400; }
 
-/* 6. INPUTS DE TERMINAL PARA LA DB (AGREGADO) */
-.input-terminal {
-    width: 100%;
-    background: #000;
-    border: 1px solid #004400;
-    color: #0f0;
-    padding: 10px;
-    margin-bottom: 8px;
-    font-family: 'DECTerminal', monospace;
-    outline: none;
-    box-sizing: border-box;
+/* ====== NUEVO: ICONO DE USUARIO Y MODAL ====== */
+.user-btn {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.input-terminal:focus {
-    border-color: #0f0;
-    box-shadow: 0 0 5px #00ff00;
+.user-btn svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: #00FF00;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 5px #00FF00);
 }
+
+.user-btn:hover svg {
+    stroke: #fff;
+    filter: drop-shadow(0 0 10px #fff);
+}
+
+.user-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background: #000;
+    border: 2px solid #00FF00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-modal.hidden {
+    display: none;
+}
+
+.modal-header {
+    background: #004400;
+    color: #0f0;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #00FF00;
+}
+
+.close-modal {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.close-modal:hover { color: #fff; }
+
+.modal-body {
+    padding: 20px;
+}
+
+.input-terminal {
+    width: 100%; background: #000; border: 1px solid #004400;
+    color: #0f0; padding: 10px; margin-bottom: 15px;
+    font-family: 'DECTerminal', monospace; outline: none; box-sizing: border-box;
+}
+.input-terminal:focus { border-color: #0f0; box-shadow: 0 0 5px #00ff00; }
+
+.profile-info p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.profile-info span { color: #0f0; }
+                                                                                
