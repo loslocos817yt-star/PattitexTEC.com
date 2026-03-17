@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PattitexTEC | Official Hub</title>
     <link rel="stylesheet" href="css/Base.css">
+    
     <style>
+        /* Estilos estructurales básicos (el resto va en Base.css) */
         body {
             background-color: #000;
             margin: 0;
@@ -16,16 +18,19 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+
         .container {
             width: 90%;
             max-width: 800px;
             padding-bottom: 50px;
             margin-top: 20px;
         }
+
         .logo {
             margin-top: 60px;
             text-align: center;
         }
+
         .search-container {
             width: 90%;
             max-width: 600px;
@@ -50,23 +55,24 @@
             <h2 class="sidebar-title">PATTITEXTEC</h2>
             <p class="sidebar-desc">Desarrollo y herramientas creadas por PattitexTEC.</p>
             
-            <div class="menu-section admin-box">
+            <div class="menu-section">
                 <p class="menu-label">DATABASE_LOGIN</p>
                 <input type="text" id="reg-user" class="input-terminal" placeholder="USER_">
                 <input type="password" id="reg-pass" class="input-terminal" placeholder="PASS_">
                 <input type="text" id="reg-id" class="input-terminal" placeholder="ID_NUM_">
                 <a href="#" class="social-link" onclick="ejecutarRegistro()">> EJECUTAR_UPLOAD</a>
             </div>
-
+            
             <div class="menu-section">
                 <p class="menu-label">REDES OFICIALES</p>
-                <a href="https://youtube.com/@insanodecartonmc" target="_blank" class="social-link">YOUTUBE</a>
-                <a href="https://www.tiktok.com/@pattitextec_ofi" target="_blank" class="social-link">TIKTOK PATTITEXTEC</a>
+                <a href="https://youtube.com/@insanodecartonmc?si=p3c-YuL0wKzoLHHw" target="_blank" class="social-link">YOUTUBE</a>
+                <a href="https://www.tiktok.com/@pattitextec_ofi?_r=1&_t=ZS-94fKqImPS2m" target="_blank" class="social-link">TIKTOK PATTITEXTEC</a>
+                <a href="https://www.tiktok.com/@nsbewvss?_r=1&_t=ZS-94fKrI1E2A0" target="_blank" class="social-link">TIKTOK DUEÑO</a>
             </div>
 
             <div class="menu-section">
                 <p class="menu-label" style="color: #ff4444;">OBJETIVOS</p>
-                <a href="https://www.tiktok.com/@nvidiageforce" target="_blank" class="social-link hate">HATE A NVIDIA</a>
+                <a href="https://www.tiktok.com/@nvidiageforce?_r=1&_t=ZS-94fKuJMUqPc" target="_blank" class="social-link hate">HATE A NVIDIA</a>
             </div>
         </div>
     </div>
@@ -85,10 +91,10 @@
         <p style="color: #00FF00;">CONECTANDO AL SERVIDOR...</p>
     </div>
 
-    <script src="js/main.js"></script>
     <script>
         let baseDeDatos = [];
 
+        // Función para cargar los proyectos desde el JSON
         async function cargarSistema() {
             try {
                 const res = await fetch('json/proyectos.json');
@@ -100,17 +106,21 @@
             }
         }
 
+        // Función para dibujar las tarjetas en el HTML
         function render(lista) {
             const container = document.getElementById('proyectos-container');
             container.innerHTML = '';
+
             if (lista.length === 0) {
                 container.innerHTML = '<p style="color: #004400">NO HAY COINCIDENCIAS.</p>';
                 return;
             }
+
             lista.forEach(proy => {
                 let btn = (proy.descarga && proy.descarga.toLowerCase() !== "no") 
                     ? `<a href="${proy.descarga}" class="btn-descarga" target="_blank">> OBTENER</a>` 
                     : '';
+
                 container.innerHTML += `
                     <div class="card">
                         <h2>${proy.name}</h2>
@@ -121,18 +131,7 @@
             });
         }
 
-        function ejecutarRegistro() {
-            const u = document.getElementById('reg-user').value;
-            const p = document.getElementById('reg-pass').value;
-            const i = document.getElementById('reg-id').value;
-            if(u && p && i) {
-                cerrarMenu();
-                registrarUsuario(u, p, i);
-            } else {
-                alert("DATOS_INCOMPLETOS");
-            }
-        }
-
+        // Lógica del buscador
         document.getElementById('buscador').addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const filtrados = baseDeDatos.filter(p => 
@@ -142,6 +141,7 @@
             render(filtrados);
         });
 
+        // LÓGICA DEL MENÚ LATERAL
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const sidebar = document.getElementById('sidebar');
@@ -159,7 +159,24 @@
 
         menuClose.addEventListener('click', cerrarMenu);
         overlay.addEventListener('click', cerrarMenu);
+
         window.onload = cargarSistema;
+
+        // NUEVO: Función puente para enviar datos al JS principal
+        function ejecutarRegistro() {
+            const u = document.getElementById('reg-user').value;
+            const p = document.getElementById('reg-pass').value;
+            const i = document.getElementById('reg-id').value;
+            
+            if(u && p && i) {
+                cerrarMenu(); 
+                registrarUsuario(u, p, i); 
+            } else {
+                alert("CAMPOS_INCOMPLETOS");
+            }
+        }
     </script>
+    
+    <script src="js/main.js"></script>
 </body>
 </html>
